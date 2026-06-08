@@ -33,41 +33,42 @@ include "header.php";
             }
             ?>
     </div>
+</section>
 
-    <!-- POPUP -->
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <div class="popup-header">
-            <span class="back" onclick="closePopup()">←</span>
-            <span>Checkout</span>
-            </div>
+<!-- POPUP -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <div class="popup-header">
+        <span class="back" onclick="closePopup()">←</span>
+        <span>Checkout</span>
+        </div>
 
-            <div class="product">
-            <img id="img">
-            <div class="product-info">
-                <h4 id="namaProduk"></h4>
-                <p id="hargaProduk"></p>
-            </div>
+        <div class="product">
+        <img id="img">
+        <div class="product-info">
+            <h4 id="namaProduk"></h4>
+            <p id="hargaProduk"></p>
+        </div>
 
-            <div class="qty">
-                <button onclick="kurang()">-</button>
-                <span id="jumlah">1</span>
-                <button onclick="tambah()">+</button>
-            </div>
-            </div>
+        <div class="qty">
+            <button onclick="kurang()">-</button>
+            <span id="jumlah">1</span>
+            <button onclick="tambah()">+</button>
+        </div>
+        </div>
 
-            <div class="form">
-            <input type="text" id="nama" placeholder="Nama">
-            <input type="text" id="telp" placeholder="Nomor Telepon">
-            <textarea id="alamat" placeholder="Alamat"></textarea>
-            </div>
+        <div class="form">
+        <input type="text" id="nama" placeholder="Nama">
+        <input type="text" id="telp" placeholder="Nomor Telepon">
+        <textarea id="alamat" placeholder="Alamat"></textarea>
+        </div>
 
-            <div class="popup-footer">
-            <span>Total: <b id="total"></b></span>
-            <button class="checkout-btn" onclick="checkout()">Checkout</button>
-            </div>
+        <div class="popup-footer">
+        <span>Total: <b id="total"></b></span>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
         </div>
     </div>
+</div>
     
 
     <script>
