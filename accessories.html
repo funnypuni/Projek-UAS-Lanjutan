@@ -1,152 +1,38 @@
 <<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="id">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Projek UTS</title>
-        <style>
-            body {
-                margin: 0;
-                background-color:rgb(255, 255, 233);
-            }
-            html {
-                scroll-behavior: smooth;
-            }
-            nav {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .navbar {
-                background-color:white;
-                position: sticky;
-                top: 0;
-                padding: 25px;
-                z-index: 1000;
-            }
-            section {
-                scroll-margin-top: 100px;
-            }
-            .menu {
-                display: flex;
-                justify-content: flex-end;
-            }
-            .btn {
-                background-color:white;
-                color: rgb(0, 170, 255);
-                font-weight: bold;
-                font-size: 16px;
-                border-radius: 50px;
-                border: 0px;
-                padding: 5px 20px;
-            }
-            .btn:hover {
-                background-color: pink;
-                color: black; 
-            }
-            .btn1 {
-                background-color: rgb(255, 158, 203);
-                border-radius: 50px;
-                border: 0px;
-                padding: 5px 10px;
-            }
-            .btn2 {
-                background-color: rgb(207, 207, 207);
-                border-radius: 50px;
-                border: 0px;
-                padding: 5px 10px;
-            }
-            .box, textarea {
-                margin-bottom: 5px;
-                display: flex;
-                align-items: center;
-                flex: 1;
-                border-radius: 10px;
-                border: 1px solid #000;
-                width: 200px;
-            }
-            .footer {
-                background-color: white;
-                padding: 20px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: 50px;
-            }
-            .contact-box {
-                display: flex;
-                justify-content: center;
-                margin-top: 10px;
-                gap: 50px;
-            }
-            .contact-item {
-                text-align: left;
-                border: 2px solid #ddd;
-                padding: 15px 25px;
-                border-radius: 15px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                background-color: white;
-            }
-            .info {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 10px;
-                margin: 8px 0;
-            }
-        </style>
-    </head>
-    <body>
-        <header class="navbar">
-            <nav>
-                <div class="logo">
-                    <img src="img/logo.png" width="150px" height="60px">
-                </div>
+<section id="accessories">
+    <h3>Data Pelanggan</h3>
+        <label for="nama_lengkap">Nama Lengkap: </label>
+        <input type="text" id="nama" class="box">
 
-                <div class="menu">
-                    <button class="btn" onclick="window.location.href='home.html'">Home</button>
-                    <button class="btn" onclick="window.location.href='shop.html'">Shop</button>
-                    <button class="btn" onclick="window.location.href='custom.html'">Custom</button>
-                </div>
-            </nav>
-        </header>
+    <div>
+        <label for="nomor_telepon">Nomor Telepon: </label>
+        <input type="tel" id="no_telp" class="box">
+    </div>
 
+    <div>
+        <label for="alamat_pelanggan">Alamat: </label>
+        <textarea id="alamat" rows="3" cols="50"></textarea>
+    </div>
 
-        <section id="accessories">
-            <h3>Data Pelanggan</h3>
-                <label for="nama_lengkap">Nama Lengkap: </label>
-                <input type="text" id="nama" class="box">
+    <h3>Jenis Produk</h3>
+        <input type="radio" id="cc" name="produk">
+        <label for="cincin">Cincin</label>
 
-            <div>
-                <label for="nomor_telepon">Nomor Telepon: </label>
-                <input type="tel" id="no_telp" class="box">
-            </div>
+    <div>
+        <input type="radio" id="gt" name="produk">
+        <label for="gelang_tangan">Gelang Tangan</label>
+    </div>
 
-            <div>
-                <label for="alamat_pelanggan">Alamat: </label>
-                <textarea id="alamat" rows="3" cols="50"></textarea>
-            </div>
+    <div>
+        <input type="radio" id="gk" name="produk">
+        <label for="gelang_kaki">Gelang Kaki</label>
+    </div>
 
-            <h3>Jenis Produk</h3>
-                <input type="radio" id="cc" name="produk">
-                <label for="cincin">Cincin</label>
+    <h3>Detail Custom</h3>
+        <label for="deadline">Deadline: </label>
+        <input type="datetime-local" id="dl" class="box">
 
-            <div>
-                <input type="radio" id="gt" name="produk">
-                <label for="gelang_tangan">Gelang Tangan</label>
-            </div>
-
-            <div>
-                <input type="radio" id="gk" name="produk">
-                <label for="gelang_kaki">Gelang Kaki</label>
-            </div>
-
-            <h3>Detail Custom</h3>
-                <label for="deadline">Deadline: </label>
-                <input type="datetime-local" id="dl" class="box">
-
-            <div>
+    <div>
                 <label for="ukuran">Ukuran (cm): </label>
                 <input type="number" id="uk" class="box">
             </div>
