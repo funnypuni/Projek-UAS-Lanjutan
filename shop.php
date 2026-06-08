@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 include "header.php";
 ?>
@@ -181,6 +180,4 @@ include "footer.php";
 ?>
 
 </body>
-=======
->>>>>>> 5e18f7d6eb53ec8f55e5a5a8ec97984a84c2bd73
 </html>
