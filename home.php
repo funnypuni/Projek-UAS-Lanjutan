@@ -23,7 +23,7 @@ include "header.php";
         </div>
 
         <div class="poster">
-        <img src="img/poster.jpeg" width="333" height="500">
+        <?= $result['poster'] ?>
         </div>
     </section>
 
