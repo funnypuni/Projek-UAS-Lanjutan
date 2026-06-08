@@ -25,7 +25,7 @@ include "header.php";
                 <p>
                     <?= $result['deskripsi'] ?>
                 </p>
-                <strong>Rp <?= number_format($result['harga_produk'],0,',','.') ?> </strong>
+                <strong>Rp <?= number_format($result['harga'],0,',','.') ?> </strong>
                 <button onclick="openPopup(this)">Pesan</button>
             </div>
             <?php
