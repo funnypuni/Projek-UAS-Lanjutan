@@ -44,7 +44,31 @@ section {
     background-color: pink;
     color: black; 
 }
-            
+
+.btn1 {
+    background-color: rgb(255, 158, 203);
+    border-radius: 50px;
+    border: 0px;
+    padding: 5px 10px;
+}
+
+.btn2 {
+    background-color: rgb(207, 207, 207);
+    border-radius: 50px;
+    border: 0px;
+    padding: 5px 10px;
+}
+
+.box, textarea {
+                margin-bottom: 5px;
+                display: flex;
+                align-items: center;
+                flex: 1;
+                border-radius: 10px;
+                border: 1px solid #000;
+                width: 200px;
+}
+
 .gambar {
     display: flex;
     justify-content: center;
@@ -101,6 +125,14 @@ h1 {
 }
 
 h2 {
+    text-align: center;
+}
+
+.p1 {
+    text-align: center;
+}
+            
+.p2 {
     text-align: center;
 }
 
