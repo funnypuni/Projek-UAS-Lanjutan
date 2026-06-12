@@ -44,17 +44,26 @@ VALUES
 
 if($query){
 
-$pesan = 
-"Hallo Loop & Soul%0A
-Saya ingin pesan crochet.%0A%0A
-Nama : $nama%0A
-Produk : $jenis%0A
-Jumlah : $jumlah";
+    $nomor_wa = "6285750064389";
 
-header(
-"Location:https://wa.me/6283153437434?text=$pesan"
-);
+    $pesan = "Halo Admin,
 
+    Saya telah mengisi formulir custom crochet.
+
+    Nama : $nama
+    Telepon : $telp
+    Alamat : $alamat
+    Jenis Produk : $jenis
+    Deadline : $deadline
+    Ukuran : $ukuran cm
+    Warna : $warna
+    Request : $request
+    Jumlah : $jumlah";
+
+    $pesan = urlencode($pesan);
+
+    header("Location: https://wa.me/$nomor_wa?text=$pesan");
+    exit;
 }
 
 }
