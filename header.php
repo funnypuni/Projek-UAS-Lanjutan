@@ -10,7 +10,6 @@
 <a href="home.php" style="font-family:Arial, sans-serif;">Home</a>
 <a href="shop.php" style="font-family:Arial, sans-serif;">Shop</a>
 <a href="custom.php" style="font-family:Arial, sans-serif;  ">Custom</a>
-<a href="login.php" style="font-family:Arial, sans-serif;">Login</a>
 </div>
 
 </nav>
