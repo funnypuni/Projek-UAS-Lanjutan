@@ -1,124 +1,172 @@
 <?php
-include "header.php";
+include 'header.php';
 ?>
 
-<section id="crochet">
-    <h3>Data Pelanggan</h3>
-        <label for="nama_lengkap">Nama Lengkap: </label>
-        <input type="text" id="nama" class="box">
-
-    <div>
-        <label for="nomor_telepon">Nomor Telepon: </label>
-        <input type="tel" id="no_telp" class="box">
-    </div>
-
-    <div>
-        <label for="alamat_pelanggan">Alamat: </label>
-        <textarea id="alamat" rows="3" cols="50"></textarea>
-    </div>
-
-    <h3>Jenis Produk</h3>
-        <input type="radio" id="ag" name="produk">
-        <label for="amigurumi">Amigurumi</label>
-    <div>
-        <input type="radio" id="hc" name="produk">
-        <label for="hair_clip">Hair Clip</label>
-    </div>
-
-    <h3>Detail Custom</h3>
-        <label for="deadline">Deadline: </label>
-        <input type="datetime-local" id="dl" class="box">
-
-    <div>
-        <label for="ukuran_produk">Ukuran (cm): </label>
-        <input type="number" id="uk" class="box">
-    </div>
-
-    <div>
-        <label for="warna_produk">Warna Produk: </label>
-        <textarea id="warna" rows="5" cols="50"></textarea>
-    </div>
-
-    <div>
-        <label for="budget">Budget: </label>
-        <input type="text" id="bgt" class="box">
-    </div>
-
-    <div>
-        <label for="request">Request Khusus: </label>
-        <textarea id="req" rows="2" cols="50" class="box"></textarea>
-    </div>
-
-    <div>
-        <label for="jumlah_pesanan">Jumlah Pesanan: </label>
-        <input type="number" id="jml_psn" class="box">
-    </div>
-
-        <button type="button" class="btn1" onclick="kirimWA()">Checkout</button>
-
-        <script>
-            function kirimWA() {
-                let nama = document.getElementById("nama").value.trim();
-                
-                let telp = document.getElementById("no_telp").value.trim();
-                
-                let alamat = document.getElementById("alamat").value.trim();
-                
-                let produk = ""
-                if (document.getElementById("ag").checked) {
-                    produk = "Amigurumi";
-                } else if (document.getElementById("hc").checked) {
-                    produk = "Hair Clip";
-                }
-                
-                let ukuran = document.getElementById("uk").value.trim();
-                
-                let deadline = document.getElementById("dl").value.trim();
-                
-                
-                let warna = document.getElementById("warna").value.trim();
-                
-                let request = document.getElementById("req").value.trim();
-                
-                let jumlah = document.getElementById("jml_psn").value.trim();
-
-                let valid = true;
-                let pesanError = "";
-
-                if(nama === "") pesanError += "Harap isi Nama Lengkap Anda!\n"; 
-                if(telp === "") pesanError += "Harap isi Nomor Telepon Anda!\n"; 
-                if(alamat === "") pesanError += "Harap isi Alamat Anda!\n"; 
-                if(produk === "") pesanError += "Harap isi Jenis Produk!\n"; 
-                if(ukuran === "") pesanError += "Harap isi Ukuran!\n"; 
-                if(deadline === "") pesanError += "Harap isi Deadline!\n"; 
-                if(warna === "") pesanError += "Harap isi Warna!\n"; 
-                if(jumlah === "") pesanError += "Harap isi Jumlah!\n"; 
-                
-                if(pesanError !== ""){
-                    alert(pesanError);
-                    return;
-                }
-                
-                let pesan = 
-                    "Haiii aku mau order nihhh\n" +
-                    "Nama Lengkap: " + nama + "\n" +
-                    "No. Telepon: " + telp + "\n" +
-                    "Alamat: " + alamat + "\n" +
-                    "Jenis Produk: " + produk + "\n" +
-                    "Deadline: " + deadline + "\n" +
-                    "Ukuran: " + ukuran + "\n" +
-                    "Warna Produk: " + warna + "\n" +
-                    "Request Khusus: " + request + "\n" +
-                    "Jumlah Pesanan: " + jumlah;
-
-                let link = "https://api.whatsapp.com/send?phone=6285750064389&text=" + encodeURIComponent(pesan);
-                window.location.href = link;
-            }
-        </script>
-</section>
-        
 <?php
-include "footer.php";
+
+include "config/koneksi.php";
+
+if(isset($_POST['checkout'])){
+
+$nama = $_POST['nama'];
+$telp = $_POST['telp'];
+$alamat = $_POST['alamat'];
+$jenis = $_POST['jenis'];
+$deadline = $_POST['deadline'];
+$ukuran = $_POST['ukuran'];
+$warna = $_POST['warna'];
+$budget = $_POST['budget'];
+$request = $_POST['request'];
+$jumlah = $_POST['jumlah'];
+
+
+$query = mysqli_query($conn, 
+"INSERT INTO frm_crochet
+(full_name, phone_number, address, product_type, deadline, size, color, budget, special_request, quantity
+)
+
+VALUES
+
+(
+'$nama',
+'$telp',
+'$alamat',
+'$jenis',
+'$deadline',
+'$ukuran',
+'$warna',
+'$budget',
+'$request',
+'$jumlah'
+)"
+);
+
+
+if($query){
+
+$pesan = 
+"Hallo Loop & Soul%0A
+Saya ingin pesan crochet.%0A%0A
+Nama : $nama%0A
+Produk : $jenis%0A
+Jumlah : $jumlah";
+
+header(
+"Location:https://wa.me/6283153437434?text=$pesan"
+);
+
+}
+
+}
+
 ?>
-    </body>
-</html>
+
+<link rel="stylesheet" href="css/frm_crochet.css">
+
+<head>
+
+<title>Custom Crochet</title>
+
+
+</head>
+
+<body>
+
+
+    <div class="container">
+
+    <h2 style="font-family: Times New Roman;">Custom Produk Crochet</h2><br>
+
+
+<form method="POST">
+
+
+<h3>Data Pelanggan</h3>
+
+
+<label>Nama Lengkap</label><br>
+<input type="text" name="nama" required>
+<br>
+
+
+
+<label>Nomor Telepon</label><br>
+<input type="text" name="telp" required>
+<br>
+
+
+<label>Alamat</label><br>
+<textarea name="alamat"></textarea>
+
+
+<br>
+
+
+<h3>Jenis Produk</h3>
+
+<label>
+<input type="radio" name="jenis" value="Amigurumi">
+Amigurumi
+</label>
+
+<label>
+<input type="radio" name="jenis" value="Hair Clip">
+Hair Clip
+</label>
+
+<br><br>
+<h3>Detail Custom</h3>
+
+<br>
+<label>Deadline</label><br>
+<input type="date" name="deadline" required>
+
+
+<br>
+
+<label>Ukuran (cm)</label><br>
+<input type="text" name="ukuran">
+
+
+<br>
+
+<label>Warna Produk</label><br>
+<textarea name="warna"></textarea>
+
+
+
+<br>
+
+<label>Budget</label><br>
+<input type="text" name="budget">
+
+
+<br>
+
+<label>Request Khusus</label><br>
+<textarea name="request"></textarea>
+
+
+<br>
+<label>Jumlah Pesanan</label><br>
+<input type="number" name="jumlah">
+
+
+<br><br>
+<button name="checkout">
+Checkout
+</button>
+
+<button type="reset" class="reset">
+Reset
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+<?php
+include 'footer.php';
+?>

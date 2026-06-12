@@ -1,26 +1,16 @@
-<?php
-include "koneksi.php";
-?>
+<link rel="stylesheet" href="css/style.css">
+<header class="navbar">
+<nav>
 
-<!DOCTYPE html>
-<html lang="id">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Projek UTS</title>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <header class="navbar">
-            <nav>
-                <div class="logo">
-                    <img src="img/logo.png" width="150px" height="60px">
-                </div>
+<div class="logo">
+<img src="logo.png" width="150">
+</div>
 
-                <div class="menu">
-                    <button class="btn" onclick="window.location.href='home.html'">Home</button>
-                    <button class="btn" onclick="window.location.href='shop.html'">Shop</button>
-                    <button class="btn" onclick="window.location.href='custom.html'">Custom</button>
-                </div>
-            </nav>
-        </header>
+<div class="menu">
+<a href="home.php" style="font-family:Arial, sans-serif;">Home</a>
+<a href="shop.php" style="font-family:Arial, sans-serif;">Shop</a>
+<a href="custom.php" style="font-family:Arial, sans-serif;  ">Custom</a>
+</div>
+
+</nav>
+</header>

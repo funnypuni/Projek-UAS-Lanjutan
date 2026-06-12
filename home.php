@@ -1,35 +1,63 @@
 <?php
-include "header.php";
+include 'header.php';
 ?>
+<link rel="stylesheet" href="css/home.css">
 
-    <section id="home">
-        <div class="gambar">
-            <img src="img/funny.png" width="275" height="350">
-            <img src="img/sella.png" width="275" height="350">
-        </div>
-
-        <div class="foto">
-            <div class="card">
-                <h3 class="judul">Owner Loop & Soul</h3>
-                <img src="img/funny_rl.jpeg" width="450" height="333">
-                <p>Hai, aku Funny, owner dari Loop & Soul! Awalnya, aku ikut workshop crochet dan meronce gelang karna mau penuhin S-Core dan udah lama juga sih aku pengen belajar crochet. Lama-lama aku sama Sella jadi sering beli beads dan benang gitu deh. Akhirnya, aku bikin Loop & Soul buat jadi tempat aku tuangin semua ide-ide aku deh! Xixixi.</p>
+<body>
+ 
+        <section id="home">
+            <div class="gambar">
+                <img src="funny.png" width="275" height="350">
+                <img src="sella.png" width="275" height="350">
             </div>
 
-            <div class="card">
-                <h3 class="judul">Owner Loop & Loom's</h3>
-                <img src="img/sella_rl.jpeg" width="450" height="333">
-                <p>Hai, aku Sella, owner dari Loop & Loom’s! Kalau aku awalnya karena liat rajutan yang lucu-lucu banget, jadi pengen coba sendiri. Aku ikut workshop terus lanjut belajar sendiri di rumah dari yang cuma coba-coba, malah jadi suka banget dan keterusan bikin ini itu sampai akhirnya berani bikin brand sendiri, sekarang rajut tuh bukan cuma hobi lagi, tapi udah jadi hal yang aku jalanin dengan seneng banget!</p>
+            <div class="foto">
+                <div class="card">
+                    <h3 class="judul">Owner Loop & Soul</h3>
+                    <img src="funny_rl.jpeg" width="450" height="333">
+                    <p>Hai, aku Funny, owner dari Loop & Soul! Awalnya, aku ikut workshop crochet dan meronce gelang karna mau penuhin S-Core dan udah lama juga sih aku pengen belajar crochet. Lama-lama aku sama Sella jadi sering beli beads dan benang gitu deh. Akhirnya, aku bikin Loop & Soul buat jadi tempat aku tuangin semua ide-ide aku deh! Xixixi.</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="judul">Owner Loop & Soul</h3>
+                    <img src="sella_rl.jpeg" width="450" height="333">
+                    <p>Hai, aku Sella, owner dari Loop & Loom’s! Kalau aku awalnya karena liat rajutan yang lucu-lucu banget, jadi pengen coba sendiri. Aku ikut workshop terus lanjut belajar sendiri di rumah dari yang cuma coba-coba, malah jadi suka banget dan keterusan bikin ini itu sampai akhirnya berani bikin brand sendiri, sekarang rajut tuh bukan cuma hobi lagi, tapi udah jadi hal yang aku jalanin dengan seneng banget!</p>
+                </div>
             </div>
-        </div>
 
-        <div class="poster">
-        <?= $result['poster'] ?>
-        </div>
-    </section>
+            <div class="poster">
+            <img src="poster.jpeg" width="333" height="500">
+            </div>
+        </section>
 
-<?php
-include "footer.php";
-?>
+        <footer class="footer">
+            <h2>Contact Us</h2>
+            <div class="contact-box">
 
-</body>
+                <div class="contact-item">
+                    <div class="info">
+                        <img src="Whatsapp.png" alt="logo" width="30px" height="30px">
+                        <span>+62 895 3285 37054</span>
+                    </div>
+
+                    <div class="info">
+                        <img src="Instagram1.png" alt="logo" width="20px" height="20px">
+                        <span>@loop.and.soul</span>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="info">
+                        <img src="Whatsapp.png" alt="logo" width="30px" height="30px">
+                        <span>+62 857 5006 4389</span>
+                    </div>
+
+                    <div class="info">
+                        <img src="Instagram1.png" alt="logo" width="20px" height="20px">
+                        <span>@looplooms.id</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>

@@ -1,31 +1,69 @@
 <?php
-include "header.php";
+include 'config/koneksi.php';
+?>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Produk - Loop & Soul</title>
+
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+
+<?php 
+include 'header.php'; 
 ?>
 
 <section id="custom">
-    <div class="judul">
+
+    <div class="custom-title">
         <h1>Produk Custom</h1>
     </div>
 
     <div class="produk">
+
+        <!-- Accessories -->
         <div class="p1">
-            <a href="accessories.html">
-                <img src="img/acc img.png" width="250" height="250" class="img1">
+
+            
+            <a href="accessories.php">
+                <img
+                    src="acc img.png"
+                    alt="Accessories"
+                    width="250"
+                    height="250"
+                >
             </a>
-            <h3>Accesories</h3>
+
+            <h3>Accessories</h3>
+
         </div>
 
+        <!-- Crochet -->
         <div class="p2">
-            <a href="crochet.html">
-                <img src="img/cro img.png" width="250" height="250" class="img2">
+
+            <a href="crochet.php">
+                <img
+                    src="cro img.png"
+                    alt="Crochet"
+                    width="250"
+                    height="250"
+                >
             </a>
+
             <h3>Crochet</h3>
+
+
         </div>
+
     </div>
+
 </section>
 
-<?php
-include "footer.php";
+<?php 
+include 'footer.php'; 
 ?>
-    </body>
-</html>
+
+</body>
