@@ -28,7 +28,7 @@ include 'header.php';
         <div class="p1">
 
             
-            <a href="accessories.php">
+            <a href="frm_accessories.php">
                 <img
                     src="acc img.png"
                     alt="Accessories"
@@ -44,7 +44,7 @@ include 'header.php';
         <!-- Crochet -->
         <div class="p2">
 
-            <a href="crochet.php">
+            <a href="frm_crochet.php">
                 <img
                     src="cro img.png"
                     alt="Crochet"
