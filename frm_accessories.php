@@ -62,9 +62,12 @@ if(isset($_POST['checkout'])){
 
     <div class="container">
 
-    <h2>Data Pelanggan</h2>
+    <h2>Custom Produk Accessories</h2><br>
+
+    
 
     <form method="POST">
+        <h3>Data Pelanggan</h3>
 
         <label>Nama Lengkap:</label><br>
         <input type="text" name="nama" required>
@@ -94,7 +97,7 @@ if(isset($_POST['checkout'])){
 
 
                 <br><br>
-                <h2>Detail Custom</h2>
+                <h3>Detail Custom</h3>
 
 
                 <label>Deadline:</label><br>

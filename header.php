@@ -3,7 +3,7 @@
 <nav>
 
 <div class="logo">
-<img src="logo.png" width="150">
+<img src="images/logo/logo.png" width="150">
 </div>
 
 <div class="menu">

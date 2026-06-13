@@ -84,7 +84,7 @@ if($query){
 
     <div class="container">
 
-    <h2 style="font-family: Times New Roman;">Custom Produk Crochet</h2><br>
+    <h2>Custom Produk Crochet</h2><br>
 
 
 <form method="POST">

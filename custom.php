@@ -30,7 +30,7 @@ include 'header.php';
             
             <a href="frm_accessories.php">
                 <img
-                    src="acc img.png"
+                    src="images/custom/acc img.png"
                     alt="Accessories"
                     width="250"
                     height="250"
@@ -46,7 +46,7 @@ include 'header.php';
 
             <a href="frm_crochet.php">
                 <img
-                    src="cro img.png"
+                    src="images/custom/cro img.png"
                     alt="Crochet"
                     width="250"
                     height="250"
