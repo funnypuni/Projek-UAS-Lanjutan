@@ -3,9 +3,8 @@ include 'config/koneksi.php';
 
 $query = mysqli_query($conn, "
     SELECT *
-    FROM shop
-    ORDER BY id, name, description, price, photo, category
-    
+    FROM product
+    ORDER BY category, name, description
 ");
 
 $produk = [];
@@ -15,15 +14,14 @@ while($row = mysqli_fetch_assoc($query)){
 }
 ?>
 
-
-<!DOCTYPE html>
-<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - Loop & Soul</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop - Loop & Soul</title>
 
-    <link rel="stylesheet" href="css/style.css">
+
+
+
 </head>
 <body>
 
@@ -34,74 +32,127 @@ while($row = mysqli_fetch_assoc($query)){
     <div id="filter">
         <select onchange="lompatKategori(this.value)">
             <option value="">Semua Kategori</option>
+
             <?php foreach($produk as $kategori => $item){ ?>
                 <option value="<?= $kategori ?>">
                     <?= $kategori ?>
                 </option>
             <?php } ?>
+
         </select>
     </div>
 
-    <?php foreach($produk as $kategori => $items){ ?>
+<?php foreach($produk as $kategori => $items){ ?>
 
-    <section id="<?= strtolower(str_replace(' ','-',$kategori)) ?>">
+<section id="<?= strtolower(str_replace(' ','-',$kategori)) ?>">
 
-        <h1 class="shop-title">
-            <?= $kategori ?>
-        </h1>
+    <h1 class="shop-title"><br><br>
+        <?= $kategori ?>
+    </h1>
 
-        <div class="grid">
+    <div class="grid">
 
-            <?php foreach($items as $row){ ?>
+        <?php foreach($items as $row){ ?>
 
-            <div class="card">
+        <div class="card">
 
-                <img
-                    src="images/<?= $row['photo']; ?>"
-                    alt="<?= $row['name']; ?>"
-                >
+            <img
+                src="images/<?= $row['photo']; ?>"
+                alt="<?= $row['name']; ?>"
+            >
 
-                <h3>
-                    <?= $row['name']; ?>
-                </h3>
+            <h3><?= $row['name']; ?></h3>
 
-                <p align="right">
-                    Rp <?= number_format($row['price'],0,',','.'); ?>
-                </p>
+            <p class="harga">
+                Rp <?= number_format($row['price'],0,',','.'); ?>
+            </p>
 
-                <?php if(!empty($row['description'])){ ?>
-                    <p>
-                        <?= nl2br($row['description']); ?>
-                    </p>
-                <?php } ?>
-
-                <form action="checkout.php" method="POST">
-
-                    <input
-                        type="hidden"
-                        name="produk_id"
-                        value="<?= $row['id']; ?>"
-                    >
-
-                    <button type="submit">
-                        Pesan
-                    </button>
-
-                </form>
-
-            </div>
-
+            <?php if(!empty($row['description'])){ ?>
+                <p><?= nl2br($row['description']); ?></p>
             <?php } ?>
+
+            <button
+                type="button"
+                onclick="openPopup(this)">
+                Pesan
+            </button>
 
         </div>
 
-    </section>
+        <?php } ?>
 
-    <br><br>
-
-    <?php } ?>
+    </div>
 
 </section>
+
+<?php } ?>
+
+</section>
+
+<!-- POPUP -->
+
+<div id="popup" class="popup">
+
+    <div class="popup-content">
+
+        <div class="popup-header">
+            <span class="back" onclick="closePopup()">←</span>
+            <span>Checkout</span>
+        </div>
+
+        <div class="product">
+
+            <img id="img">
+
+            <div class="product-info">
+                <h4 id="namaProduk"></h4>
+                <p id="hargaProduk"></p>
+            </div>
+
+            <div class="qty">
+                <button onclick="kurang()">-</button>
+                <span id="jumlah">1</span>
+                <button onclick="tambah()">+</button>
+            </div>
+
+        </div>
+
+        <div class="form">
+
+            <input
+                type="text"
+                id="nama"
+                placeholder="Nama">
+
+            <input
+                type="text"
+                id="telp"
+                placeholder="Nomor Telepon">
+
+            <textarea
+                id="alamat"
+                placeholder="Alamat"></textarea>
+
+        </div>
+
+        <div class="popup-footer">
+
+            <span>
+                Total:
+                <b id="total"></b>
+            </span>
+
+            <button
+                class="checkout-btn"
+                onclick="checkout()">
+                Checkout
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 <?php include 'footer.php'; ?>
 
@@ -109,130 +160,153 @@ while($row = mysqli_fetch_assoc($query)){
 
 function lompatKategori(kategori){
 
-    if(kategori == ""){
+    if(kategori==""){
         window.scrollTo({
             top:0,
-            behavior:'smooth'
+            behavior:"smooth"
         });
         return;
     }
 
     let id = kategori
         .toLowerCase()
-        .replaceAll(' ','-');
+        .replaceAll(" ","-");
 
     document
         .getElementById(id)
         .scrollIntoView({
-            behavior:'smooth'
+            behavior:"smooth"
         });
 }
 
+let harga = 0;
+let jumlah = 1;
+
+function formatRupiah(angka){
+    return "Rp " +
+    angka.toString().replace(
+        /\B(?=(\d{3})+(?!\d))/g,
+        "."
+    );
+}
+
+function openPopup(btn){
+
+    let card = btn.closest(".card");
+
+    let img =
+        card.querySelector("img").src;
+
+    let nama =
+        card.querySelector("h3").innerText;
+
+    let textHarga =
+        card.querySelector(".harga").innerText;
+
+    let price =
+        parseInt(
+            textHarga.replace(/[^0-9]/g,"")
+        );
+
+    harga = price;
+    jumlah = 1;
+
+    document
+        .getElementById("popup")
+        .classList.add("show");
+
+    document
+        .getElementById("img")
+        .src = img;
+
+    document
+        .getElementById("namaProduk")
+        .innerText = nama;
+
+    document
+        .getElementById("hargaProduk")
+        .innerText = formatRupiah(price);
+
+    document
+        .getElementById("jumlah")
+        .innerText = jumlah;
+
+    updateTotal();
+}
+
+function closePopup(){
+    document
+        .getElementById("popup")
+        .classList.remove("show");
+}
+
+function tambah(){
+    jumlah++;
+    document.getElementById("jumlah").innerText = jumlah;
+    updateTotal();
+}
+
+function kurang(){
+
+    if(jumlah > 1){
+
+        jumlah--;
+
+        document.getElementById("jumlah")
+        .innerText = jumlah;
+
+        updateTotal();
+    }
+}
+
+function updateTotal(){
+
+    document.getElementById("total")
+    .innerText =
+    formatRupiah(harga * jumlah);
+}
+
+function checkout(){
+
+    let nama =
+    document.getElementById("nama");
+
+    let telp =
+    document.getElementById("telp");
+
+    let alamat =
+    document.getElementById("alamat");
+
+    if(
+        nama.value.trim()=="" ||
+        telp.value.trim()=="" ||
+        alamat.value.trim()==""
+    ){
+        alert("Harap isi semua data!");
+        return;
+    }
+
+    let nomorWA =
+    "62895328537054";
+
+    let pesan =
+`Halo, saya ingin memesan:
+
+Produk : ${document.getElementById("namaProduk").innerText}
+Jumlah : ${jumlah}
+Total : ${formatRupiah(harga*jumlah)}
+
+Nama : ${nama.value}
+No HP : ${telp.value}
+Alamat : ${alamat.value}`;
+
+    window.open(
+        `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`,
+        "_blank"
+    );
+}
+
+
 </script>
 
-           <script>
-                function pindah(id) {
-                    if (id !== "") {
-                        window.location.href = id;
-                    }
-                }
-            </script>
-
-            <script>
-                let harga = 0;
-                let jumlah = 1;
-
-                // FORMAT RUPIAH
-                function formatRupiah(angka){
-                    return "Rp " + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                }
-
-                // FORMAT HARGA DI CARD SAAT LOAD
-                document.querySelectorAll(".harga").forEach(el => {
-                    let angka = parseInt(el.innerText);
-                    el.innerText = formatRupiah(angka);
-                });
-
-                function openPopup(btn){
-                    let card = btn.parentElement;
-
-                    let img = card.querySelector("img").src;
-                    let nama = card.querySelector("h3").childNodes[0].nodeValue;
-
-                    // ambil angka dari teks "Rp 30.000"
-                    let textHarga = card.querySelector(".harga").innerText;
-                    let price = parseInt(textHarga.replace(/[^0-9]/g, ""));
-
-                    harga = price;
-                    jumlah = 1;
-
-                    document.getElementById("popup").classList.add("show");
-                    document.getElementById("img").src = img;
-                    document.getElementById("namaProduk").innerText = nama;
-                    document.getElementById("hargaProduk").innerText = formatRupiah(price);
-                    document.getElementById("jumlah").innerText = jumlah;
-
-                    updateTotal();
-                }
-
-                function closePopup(){
-                    document.getElementById("popup").classList.remove("show");
-                }
-
-                function tambah(){
-                    jumlah++;
-                    document.getElementById("jumlah").innerText = jumlah;
-                    updateTotal();
-                }
-
-                function kurang(){
-                    if(jumlah > 1){
-                        jumlah--;
-                        document.getElementById("jumlah").innerText = jumlah;
-                        updateTotal();
-                    }
-                }
-
-                function updateTotal(){
-                    document.getElementById("total").innerText = formatRupiah(harga * jumlah);
-                }
-
-                function checkout(){
-                    let nama = document.getElementById("nama");
-                    let telp = document.getElementById("telp");
-                    let alamat = document.getElementById("alamat");
-
-                    let valid = true;
-
-                    [nama, telp, alamat].forEach(input => {
-                        if(input.value.trim() === ""){
-                        input.classList.add("error");
-                        valid = false;
-                        } else {
-                        input.classList.remove("error");
-                        }
-                    });
-
-                    if(!valid){
-                        alert("Harap isi semua data!");
-                        return;
-                    }
-
-                    let nomorWA = "62895328537054";
-
-                    let pesan = `Halo, saya ingin pesan:
-
-                Produk: ${document.getElementById("namaProduk").innerText}
-                Jumlah: ${jumlah}
-                Total: ${formatRupiah(harga * jumlah)}
-
-                Nama: ${nama.value}
-                No HP: ${telp.value}
-                Alamat: ${alamat.value}`;
-
-                    window.open(`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`);
-                    }
-            </script>
-
 </body>
-</html>
