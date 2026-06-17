@@ -31,6 +31,7 @@ include 'header.php';
             <br>
             <div class="poster">
             <img src="images/poster/poster.jpeg" width="333" height="500">
+            <img src="images/poster/poster_2.jpeg" width="333" height="500">
             </div>
         </section>
 
