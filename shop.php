@@ -1,5 +1,5 @@
 <?php
-include 'config/koneksi.php';
+include 'admin/koneksi.php';
 
 $query = mysqli_query($conn, "
     SELECT *

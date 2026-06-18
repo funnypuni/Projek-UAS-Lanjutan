@@ -4,7 +4,7 @@ include 'header.php';
 
 <?php
 
-include "config/koneksi.php";
+include "admin/koneksi.php";
 
 if(isset($_POST['checkout'])){
 
